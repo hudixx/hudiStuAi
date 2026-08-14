@@ -1,6 +1,8 @@
 package com.hudi.spingai.quickstart;
 
 import cn.hutool.core.util.StrUtil;
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -64,6 +66,19 @@ public class TestDeepseek {
         ChatResponse res = chatModel.call(new Prompt("你好，你是谁", options));
         System.out.println(res.getResult().getOutput().getText());
 
+    }
+
+    public static void main(String[] args) {
+        // The client gets the API key from the environment variable `GEMINI_API_KEY`.
+        Client client = new Client();
+
+        GenerateContentResponse response =
+                client.models.generateContent(
+                        "gemini-3-flash-preview",
+                        "Explain how AI works in a few words",
+                        null);
+
+        System.out.println(response.text());
     }
 
 
