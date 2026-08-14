@@ -7,6 +7,9 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.deepseek.DeepSeekChatModel;
+import org.springframework.ai.deepseek.DeepSeekChatOptions;
+import org.springframework.ai.model.deepseek.autoconfigure.DeepSeekChatProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,10 +21,10 @@ import org.springframework.context.annotation.Configuration;
 public class AiConfig {
 
     @Bean
-    public ChatClient planningChatClient(DashScopeChatModel chatModel,
-                                         DashScopeChatProperties options,
+    public ChatClient planningChatClient(DeepSeekChatModel chatModel,
+                                         DeepSeekChatProperties options,
                                          ChatMemory chatMemory) {
-        DashScopeChatOptions dashScopeChatOptions = DashScopeChatOptions.fromOptions(options.getOptions());
+        DeepSeekChatOptions dashScopeChatOptions = DeepSeekChatOptions.fromOptions(options.getOptions());
         dashScopeChatOptions.setTemperature(0.4);
         return ChatClient.builder(chatModel)
                 .defaultSystem("""
@@ -43,10 +46,10 @@ public class AiConfig {
     }
 
     @Bean
-    public ChatClient botChatClient(DashScopeChatModel chatModel,
-                                    DashScopeChatProperties options,
+    public ChatClient botChatClient(DeepSeekChatModel chatModel,
+                                    DeepSeekChatProperties options,
                                     ChatMemory chatMemory) {
-        DashScopeChatOptions dashScopeChatOptions = DashScopeChatOptions.fromOptions(options.getOptions());
+        DeepSeekChatOptions dashScopeChatOptions = DeepSeekChatOptions.fromOptions(options.getOptions());
         dashScopeChatOptions.setTemperature(1.2);
         return ChatClient.builder(chatModel)
                 .defaultSystem("""
