@@ -27,6 +27,13 @@ spring:
                     model: qwen3-max
             base-url: https://dashscope.aliyuncs.com
 #            base-url: https://dashscope.aliyuncs.com/api/v1
+        anthropic:
+            # 可选：未配置 ai_key_anthropic 时不强制失败；兼容网关请设 base-url
+            api-key: ${ai_key_anthropic}
+            base-url: ${ai_base_anthropic}
+            chat:
+                options:
+                    model: gemini-3.7-flash-high
         chat:
             memory:
                 repository:
